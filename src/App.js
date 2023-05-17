@@ -29,7 +29,7 @@ function App() {
       date: new Date(2021 ,4, 28)
     },
   ]
-
+  console.log(expenses)
   const addExpenseHandler = expense => {
     console.log('In App.js')
     console.log(expense)
