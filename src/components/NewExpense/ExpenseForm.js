@@ -21,16 +21,21 @@ const ExpenseForm = (props) => {
     const submitHandler = (event) => {
         event.preventDefault();
 
+        const userTimezoneOffset = 420; // Pacific Time Zone offset in minutes (PT is UTC-7:00)
+        const selectedDate = new Date(enteredDate + 'T00:00:00'); // Converts the entered date to a Date object (set time to 00:00:00 to avoid time zone issues)
+        const adjustedDate = new Date(selectedDate.getTime() + userTimezoneOffset * 60000); // Adjusts the date to the Pacific Time Zone
+
         const expenseData = {
             title: enteredTitle,
             amount: enteredAmount,
-            date: new Date(enteredDate),
+            date: adjustedDate,
         };
-
+        console.log(expenseData.date)
+        console.log(enteredDate)
         props.onSaveExpenseData(expenseData);
         setEnteredTitle('');
         setEnteredAmount('');
-        setEnteredTitle('');
+        setEnteredDate('');
     };
 
     return (
